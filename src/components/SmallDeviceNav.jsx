@@ -11,7 +11,7 @@ const SmallDeviceNav = () => {
   const [loggedin, setLoggedin] = React.useState(false);
   return (
     <>
-      <div className="p-3 flex sm:hidden justify-between">
+      <div className="p-3 pl-0 pr-0 flex sm:hidden justify-between">
         <span className="flex">
           <img src={logo} alt="" className="w-[20px] h-[20px] m-1 mt-[6px]" />
           <h2 className="text-[dodgerblue] text-[20px] font-bold">Proto</h2>

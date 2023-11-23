@@ -15,7 +15,7 @@ const NavBar = () => {
         </div>
         <ul className="flex m-[5px]">
           {links.map((link, index) => (
-            <li key={index} className="text-center font-semibold mr-3 md:mr-8">
+            <li key={index} className="text-center font-semibold mr-3 md:mr-12">
               <Link
                 route={link.route}
                 label={link.label}

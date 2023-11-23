@@ -28,3 +28,15 @@ code {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+.card-content {
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, .2);
+}
+.active {
+  border-bottom: 3px solid dodgerblue;
+}
+.text-shadow {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, .7);
+}
+.image-bg {
+  background-color: rgba(0, 0, 0, .5);
+}
