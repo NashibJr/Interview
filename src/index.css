@@ -40,3 +40,15 @@ code {
 .image-bg {
   background-color: rgba(0, 0, 0, .5);
 }
+.myanimation {
+  animation: myanimation 7s infinite;
+  transition-duration: myanimtion .6s ease;
+}
+@keyframes myanimation {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
