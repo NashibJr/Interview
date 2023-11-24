@@ -1,7 +1,5 @@
 import React from "react";
-import Link from "./Link";
 import ContinentLink from "./ContinentLink";
-import Button from "./Button";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 const ContinentNavs = ({

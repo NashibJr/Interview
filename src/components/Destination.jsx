@@ -5,10 +5,12 @@ import { IoMdAirplane } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { GrUpdate } from "react-icons/gr";
 import UpdateModal from "../Modals/UpdateModal";
+import DeleteModal from "../Modals/DeleteModal";
 
 const Destination = ({ image, country, desc }) => {
   const [showIcons, setShowIcons] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
   return (
     <div className="w-[150px] m-1 mb-5 sm:w-[290px] md:w-[300px] xs:w-[200px] lg:w-[410px] md:mr-4 cursor-pointer">
       <div
@@ -28,6 +30,7 @@ const Destination = ({ image, country, desc }) => {
               showIcons ? "block" : "hidden"
             }`}
             fill="red"
+            onClick={() => setOpenDeleteModal(true)}
           />
           <GrUpdate
             className={`w-[15px] h-[15px] md:w-[30px] md:h-[20px] cursor-pointer mt-1 ${
@@ -62,6 +65,10 @@ const Destination = ({ image, country, desc }) => {
         </div>
       </div>
       <UpdateModal open={openModal} handleClose={() => setOpenModal(false)} />
+      <DeleteModal
+        open={openDeleteModal}
+        handleClose={() => setOpenDeleteModal(false)}
+      />
     </div>
   );
 };
