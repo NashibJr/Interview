@@ -1,9 +1,9 @@
 import React from "react";
-import Modal from "./Modal";
-import Input from "../components/Input";
 import Button from "../components/Button";
+import Input from "../components/Input";
+import Modal from "./Modal";
 
-const CreateModal = ({ handleClose, open }) => {
+const UpdateModal = ({ handleClose, open }) => {
   const [image, setImage] = React.useState("");
   const [state, setState] = React.useState({
     location: "",
@@ -18,7 +18,7 @@ const CreateModal = ({ handleClose, open }) => {
 
   return (
     <Modal
-      title="Create Destination"
+      title="Update Destination"
       open={open}
       id="create"
       descID="create-dest"
@@ -47,7 +47,7 @@ const CreateModal = ({ handleClose, open }) => {
           handleChange={handleChange}
         />
         <Input
-          type="text"
+          type="number"
           name="price"
           placeholder="Enter price"
           value={state.price}
@@ -68,13 +68,20 @@ const CreateModal = ({ handleClose, open }) => {
           value={state.description}
           onChange={handleChange}
         ></textarea>
-        <Button
-          label="Create"
-          classname="w-full text-center uppercase text-white bg-[dodgerblue] mt-3 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold"
-        />
+        <span className="flex">
+          <Button
+            label="cancel"
+            classname="w-1/2 text-center uppercase text-white bg-[#555] mt-3 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold m-2"
+            handleClick={handleClose}
+          />
+          <Button
+            label="Update"
+            classname="w-1/2 text-center uppercase text-white bg-[dodgerblue] mt-3 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold h-[48px] m-2"
+          />
+        </span>
       </form>
     </Modal>
   );
 };
 
-export default CreateModal;
+export default UpdateModal;
