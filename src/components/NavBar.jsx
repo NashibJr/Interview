@@ -5,7 +5,7 @@ import Link from "./Link";
 import Button from "./Button";
 import SmallDeviceNav from "./SmallDeviceNav";
 
-const NavBar = () => {
+const NavBar = ({ handleOpen }) => {
   return (
     <>
       <nav className="w-full sm:flex hidden p-2 justify-between">
@@ -28,6 +28,7 @@ const NavBar = () => {
         <Button
           label="login"
           classname="h-[35px] pb-[1px] m-1 uppercase text-white text-center font-semibold rounded-[24px] bg-[dodgerblue] w-[100px]"
+          handleClick={handleOpen}
         />
       </nav>
       <SmallDeviceNav />

@@ -5,9 +5,9 @@ import { IoMdAirplane } from "react-icons/io";
 
 const Destination = ({ image, country, desc }) => {
   return (
-    <div className="w-[150px] m-1 mb-5 sm:w-[200px] md:w-[300px] lg:w-[430px] md:mr-4">
+    <div className="w-[150px] m-1 mb-5 sm:w-[290px] md:w-[300px] xs:w-[200px] lg:w-[410px] md:mr-4">
       <div
-        className="card-content w-[150px] h-[140px] m-1 rounded-lg mb-2 sm:w-[200px] sm:h-[160px] md:w-[300px] md:h-[220px] lg:w-[430px] lg:h-[260px]"
+        className="card-content w-[150px] h-[140px] m-1 rounded-lg mb-2 sm:w-[290px] sm:h-[160px] md:w-[300px] xs:w-[200px] md:h-[220px] lg:w-[410px] lg:h-[260px]"
         style={{
           backgroundImage: `url(${image})`,
           backgroundRepeat: "no-repeat",

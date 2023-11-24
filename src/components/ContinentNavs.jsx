@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "./Link";
 import ContinentLink from "./ContinentLink";
+import Button from "./Button";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 const ContinentNavs = ({ handleNav, showNotification = true }) => {
   return (
@@ -14,6 +16,12 @@ const ContinentNavs = ({ handleNav, showNotification = true }) => {
       <ContinentLink label="Europe" />
       <ContinentLink label="Africa" />
       <ContinentLink label="America" />
+      <li>
+        <IoMdAddCircleOutline
+          size={25}
+          className="cursor-pointer hover:text-black text-[dodgerblue]"
+        />
+      </li>
     </ul>
   );
 };
