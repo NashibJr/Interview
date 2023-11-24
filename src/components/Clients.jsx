@@ -6,7 +6,7 @@ const Clients = () => {
   return (
     <>
       <h2 className="text-lg font-bold text-center mt-8 mb-5">Clients</h2>
-      <div className=" sm:flex">
+      <div className="sm:flex mr-2 -ml-2 sm:ml-0 sm:m-0">
         <ClientComponent
           image={client}
           name="Mario Rossi"

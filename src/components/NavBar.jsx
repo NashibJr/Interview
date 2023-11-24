@@ -27,7 +27,7 @@ const NavBar = ({ handleOpen }) => {
         </ul>
         <Button
           label="login"
-          classname="h-[35px] pb-[1px] m-1 uppercase text-white text-center font-semibold rounded-[24px] bg-[dodgerblue] w-[100px]"
+          classname="h-[35px] pb-[1px] m-1 uppercase text-white text-center font-semibold rounded-[24px] bg-[dodgerblue] w-[100px] hover:opacity-80"
           handleClick={handleOpen}
         />
       </nav>

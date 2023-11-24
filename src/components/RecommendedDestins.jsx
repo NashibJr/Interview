@@ -3,14 +3,14 @@ import ContinentNavs from "./ContinentNavs";
 import Destination from "./Destination";
 import london from "../assets/images/london.jpg";
 
-const RecommendedDestins = () => {
+const RecommendedDestins = ({ handleOpenCreateModal }) => {
   return (
     <div className="mt-5 pt-2 sm:mt-8">
       <h2 className="font-bold mb-2 text-center text-lg md:text-xl">
         Recommended Destinations
       </h2>
       <div className="w-full overflow-x-scroll hide-scrollbar mb-5 md:flex justify-center">
-        <ContinentNavs />
+        <ContinentNavs handleOpenCreateModal={handleOpenCreateModal} />
       </div>
       <div className="flex flex-wrap justify-center">
         <Destination

@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "./Modal";
 import Button from "../components/Button";
+import Input from "../components/Input";
 
 const LoginModal = ({ open, handleClose }) => {
   const [state, setState] = React.useState({ email: "", password: "" });
@@ -16,21 +17,19 @@ const LoginModal = ({ open, handleClose }) => {
       open={open}
       handleClose={handleClose}
     >
-      <input
+      <Input
         type="email"
         name="email"
         value={state.email}
-        className="border border-[rgba(0, 0, 0, .2)] rounded-md p-2 mt-0 w-full outline-none sm:p-3"
         placeholder="Email"
-        onChange={handleChange}
+        handleChange={handleChange}
       />
-      <input
+      <Input
         type="password"
         name="password"
         value={state.password}
-        className="border border-[rgba(0, 0, 0, .2)] rounded-md p-2 mt-3 w-full outline-none sm:p-3"
         placeholder="Password"
-        onChange={handleChange}
+        handleChange={handleChange}
       />
       <Button
         label="login"
