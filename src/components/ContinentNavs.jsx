@@ -4,7 +4,11 @@ import ContinentLink from "./ContinentLink";
 import Button from "./Button";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
-const ContinentNavs = ({ handleNav, showNotification = true }) => {
+const ContinentNavs = ({
+  handleNav,
+  showNotification = true,
+  handleOpenCreateModal,
+}) => {
   return (
     <ul className="border-b border-b-[rgba(0, 0, 0, .2)] flex justify-center mt-5">
       <ContinentLink
@@ -20,6 +24,7 @@ const ContinentNavs = ({ handleNav, showNotification = true }) => {
         <IoMdAddCircleOutline
           size={25}
           className="cursor-pointer hover:text-black text-[dodgerblue]"
+          onClick={handleOpenCreateModal}
         />
       </li>
     </ul>
