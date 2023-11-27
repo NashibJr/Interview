@@ -3,10 +3,13 @@ import ContinentNavs from "./ContinentNavs";
 import Destination from "./Destination";
 import london from "../assets/images/london.jpg";
 import client from "../api/client";
+import UpdateModal from "../Modals/UpdateModal";
 
 const RecommendedDestins = ({ handleOpenCreateModal, destination }) => {
   const [destinations, setDestinations] = React.useState([]);
   const [loader, setLoader] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [id, setId] = React.useState("");
 
   React.useEffect(() => {
     fetchDestinations();
@@ -28,12 +31,24 @@ const RecommendedDestins = ({ handleOpenCreateModal, destination }) => {
     }
   };
 
+  const getId = (id) => setId(id);
+
   const upDate = (destination) =>
     setDestinations((prevState) => [...prevState, destination]);
 
   const updateDelete = (id) =>
     setDestinations((prevState) =>
       prevState.filter((destination) => destination.id !== id)
+    );
+
+  const updateDestination = (updatedDestination) =>
+    setDestinations((prevState) =>
+      prevState.map((item) => {
+        if (updatedDestination?.id === item?.id) {
+          return updatedDestination;
+        }
+        return item;
+      })
     );
 
   return (
@@ -67,11 +82,19 @@ const RecommendedDestins = ({ handleOpenCreateModal, destination }) => {
                 key={destination.id}
                 id={destination.id}
                 updateDelete={updateDelete}
+                setOpenModal={setOpenModal}
+                getId={getId}
               />
             ))}
           </>
         )}
       </div>
+      <UpdateModal
+        open={openModal}
+        handleClose={() => setOpenModal(false)}
+        id={id}
+        updateDestination={updateDestination}
+      />
     </div>
   );
 };

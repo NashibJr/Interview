@@ -20,7 +20,7 @@ const CreateModal = ({ handleClose, open, getDestination }) => {
     setState({ ...state, [event.target.name]: event.target.value });
 
   const handleCreate = async (event) => {
-    const data = { ...state, image: "helloworld!!!!.png" };
+    const data = { ...state, image: "helloworldjj!.png" };
     event.preventDefault();
     try {
       setLoader(true);
@@ -96,7 +96,7 @@ const CreateModal = ({ handleClose, open, getDestination }) => {
           onChange={handleChange}
         ></textarea>
         <Button
-          label={loader ? "Loading...." : "Create"}
+          label={loader ? "creating...." : "Create"}
           classname="w-full text-center uppercase text-white bg-[dodgerblue] mt-3 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold"
           handleClick={handleCreate}
         />

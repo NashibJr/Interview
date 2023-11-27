@@ -16,9 +16,10 @@ const Destination = ({
   duration,
   id,
   updateDelete,
+  setOpenModal,
+  getId,
 }) => {
   const [showIcons, setShowIcons] = React.useState(false);
-  const [openModal, setOpenModal] = React.useState(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
 
   return (
@@ -46,7 +47,10 @@ const Destination = ({
             className={`w-[15px] h-[15px] md:w-[30px] md:h-[20px] cursor-pointer mt-1 ${
               showIcons ? "block" : "hidden"
             }`}
-            onClick={() => setOpenModal(true)}
+            onClick={() => {
+              setOpenModal(true);
+              getId(id);
+            }}
           />
         </div>
       </div>
@@ -74,7 +78,6 @@ const Destination = ({
           </div>
         </div>
       </div>
-      <UpdateModal open={openModal} handleClose={() => setOpenModal(false)} />
       <DeleteModal
         open={openDeleteModal}
         handleClose={() => setOpenDeleteModal(false)}
