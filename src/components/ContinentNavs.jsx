@@ -2,7 +2,11 @@ import React from "react";
 import ContinentLink from "./ContinentLink";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
-const ContinentNavs = ({ showNotification, handleOpenCreateModal }) => {
+const ContinentNavs = ({
+  showNotification,
+  handleOpenCreateModal,
+  handleClick,
+}) => {
   const [navs, setNavs] = React.useState({
     asia: true,
     europe: false,
@@ -19,6 +23,7 @@ const ContinentNavs = ({ showNotification, handleOpenCreateModal }) => {
         handleNav={() =>
           setNavs({ africa: false, america: false, asia: true, europe: false })
         }
+        handleClick={handleClick}
       />
       <ContinentLink
         label="Europe"
@@ -31,6 +36,7 @@ const ContinentNavs = ({ showNotification, handleOpenCreateModal }) => {
             europe: true,
           }))
         }
+        handleClick={handleClick}
       />
       <ContinentLink
         label="Africa"
@@ -38,6 +44,7 @@ const ContinentNavs = ({ showNotification, handleOpenCreateModal }) => {
         handleNav={() =>
           setNavs({ africa: true, america: false, asia: false, europe: false })
         }
+        handleClick={handleClick}
       />
       <ContinentLink
         label="America"
@@ -45,6 +52,7 @@ const ContinentNavs = ({ showNotification, handleOpenCreateModal }) => {
         handleNav={() =>
           setNavs({ africa: false, america: true, asia: false, europe: false })
         }
+        handleClick={handleClick}
       />
       <li>
         <IoMdAddCircleOutline

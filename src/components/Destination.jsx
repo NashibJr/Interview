@@ -7,7 +7,7 @@ import { GrUpdate } from "react-icons/gr";
 import UpdateModal from "../Modals/UpdateModal";
 import DeleteModal from "../Modals/DeleteModal";
 
-const Destination = ({ image, country, desc }) => {
+const Destination = ({ image, country, desc, price, distance, duration }) => {
   const [showIcons, setShowIcons] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
@@ -53,13 +53,13 @@ const Destination = ({ image, country, desc }) => {
               <IoMdAirplane className="bg-[#070707] text-white rounded-full w-[10px] h-[10px] md:w-[15px] md:h-[15px]" />
             </div>
             <p className="text-[#070707] font-semibold text-xs text-left mt-2 md:font-bold md:text-sm">
-              1000 Kms
+              {distance}
             </p>
           </div>
           <div>
-            <p className="text-xs sm:text-sm">$ 10,000</p>
+            <p className="text-xs sm:text-sm">$ {price}</p>
             <p className="text-[#070707] font-semibold text-xs md:font-bold md:text-sm">
-              Approx 2 nights
+              {duration}
             </p>
           </div>
         </div>
