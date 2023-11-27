@@ -6,13 +6,17 @@ const ContinentLink = ({
   notificationNum,
   label,
   active,
+  handleClick,
 }) => {
   return (
     <li
       className={`w-[100px] flex justify-between ${
         active ? "active" : ""
       } mr-5 cursor-pointer`}
-      onClick={handleNav}
+      onClick={() => {
+        handleNav();
+        handleClick();
+      }}
     >
       <a className="text-sm text-[#070707]">{label}</a>
       <div

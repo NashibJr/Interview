@@ -2,19 +2,62 @@ import React from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Modal from "./Modal";
+import client from "../api/client";
 
-const UpdateModal = ({ handleClose, open }) => {
-  const [image, setImage] = React.useState("");
+const UpdateModal = ({ handleClose, open, id, updateDestination }) => {
+  const [destination, setDestination] = React.useState({});
+  const [loader, setLoader] = React.useState(false);
   const [state, setState] = React.useState({
-    location: "",
+    place: "",
+    image: "",
     distance: "",
     price: "",
     duration: "",
     description: "",
   });
 
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const response = await client.get(`/${id}`);
+        if (open) {
+          setDestination(response?.data?.data[0]);
+          setState({
+            description: response?.data?.data[0]?.description,
+            distance: response?.data?.data[0]?.distance,
+            duration: response?.data?.data[0]?.duration,
+            place: response?.data?.data[0]?.place,
+            price: response?.data?.data[0]?.price,
+          });
+        } else {
+          setDestination({});
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+
+    return () => setDestination({});
+  }, [id, open]);
+
   const handleChange = (event) =>
     setState({ ...state, [event.target.name]: event.target.value });
+
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+    const data = { ...state };
+    try {
+      setLoader(true);
+      const response = await client.put(`/${id}`, data);
+      handleClose();
+      updateDestination(response?.data?.data[0]);
+      setLoader(false);
+      alert(response?.data?.message);
+    } catch (error) {
+      setLoader(false);
+      console.log(error);
+    }
+  };
 
   return (
     <Modal
@@ -26,17 +69,17 @@ const UpdateModal = ({ handleClose, open }) => {
     >
       <form>
         <label>Destination image</label>
-        <Input
+        {/* <Input
           type="file"
           name="image"
-          value={image}
-          handleChange={() => setImage(null)}
-        />
+          value={state.image}
+          handleChange={handleChange}
+        /> */}
         <Input
           type="text"
-          name="location"
+          name="place"
           placeholder="Enter city"
-          value={state.location}
+          value={state.place}
           handleChange={handleChange}
         />
         <Input
@@ -75,8 +118,9 @@ const UpdateModal = ({ handleClose, open }) => {
             handleClick={handleClose}
           />
           <Button
-            label="Update"
+            label={loader ? "updating..." : "Update"}
             classname="w-1/2 text-center uppercase text-white bg-[dodgerblue] mt-3 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold h-[48px] m-2"
+            handleClick={handleUpdate}
           />
         </span>
       </form>

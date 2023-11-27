@@ -1,8 +1,26 @@
 import React from "react";
 import Modal from "./Modal";
 import Button from "../components/Button";
+import client from "../api/client";
 
-const DeleteModal = ({ open, handleClose }) => {
+const DeleteModal = ({ open, handleClose, id, updateDelete }) => {
+  const [loader, setLoader] = React.useState(false);
+
+  const handleDelete = async () => {
+    try {
+      setLoader(true);
+      const response = await client.delete(`/${id}`);
+      alert(response?.data?.message);
+      console.log(response);
+      setLoader(false);
+      handleClose();
+      updateDelete(id);
+    } catch (error) {
+      setLoader(false);
+      console.log(error);
+    }
+  };
+
   return (
     <Modal
       title="confirm deletion"
@@ -21,8 +39,9 @@ const DeleteModal = ({ open, handleClose }) => {
           handleClick={handleClose}
         />
         <Button
-          label="delete"
-          classname="w-1/2 text-center uppercase text-white bg-red-500 mt-3 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold h-[48px] m-2"
+          label={loader ? "deleting...." : "delete"}
+          classname="w-1/2 text-center uppercase text-white bg-red-500 mt-3 focus:opacity-80 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold h-[48px] m-2"
+          handleClick={handleDelete}
         />
       </span>
     </Modal>

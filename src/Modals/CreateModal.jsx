@@ -2,19 +2,46 @@ import React from "react";
 import Modal from "./Modal";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import client from "../api/client";
 
-const CreateModal = ({ handleClose, open }) => {
-  const [image, setImage] = React.useState("");
+const CreateModal = ({ handleClose, open, getDestination }) => {
   const [state, setState] = React.useState({
-    location: "",
+    image: "",
+    place: "",
     distance: "",
     price: "",
     duration: "",
     description: "",
   });
 
+  const [loader, setLoader] = React.useState(false);
+
   const handleChange = (event) =>
     setState({ ...state, [event.target.name]: event.target.value });
+
+  const handleCreate = async (event) => {
+    const data = { ...state, image: "helloworldjj!.png" };
+    event.preventDefault();
+    try {
+      setLoader(true);
+      const response = await client.post("", data);
+      getDestination(response?.data?.data);
+      setLoader(false);
+      alert(response?.data?.message);
+      handleClose();
+      setState({
+        description: "",
+        duration: "",
+        distance: "",
+        image: "",
+        place: "",
+        price: "",
+      });
+    } catch (error) {
+      setLoader(false);
+      console.log(error);
+    }
+  };
 
   return (
     <Modal
@@ -29,14 +56,14 @@ const CreateModal = ({ handleClose, open }) => {
         <Input
           type="file"
           name="image"
-          value={image}
-          handleChange={() => setImage(null)}
+          value={state.image}
+          handleChange={handleChange}
         />
         <Input
           type="text"
-          name="location"
+          name="place"
           placeholder="Enter city"
-          value={state.location}
+          value={state.place}
           handleChange={handleChange}
         />
         <Input
@@ -69,8 +96,9 @@ const CreateModal = ({ handleClose, open }) => {
           onChange={handleChange}
         ></textarea>
         <Button
-          label="Create"
+          label={loader ? "creating...." : "Create"}
           classname="w-full text-center uppercase text-white bg-[dodgerblue] mt-3 hover:opacity-80 p-2 rounded-md sm:p-3 font-semibold"
+          handleClick={handleCreate}
         />
       </form>
     </Modal>
