@@ -4,13 +4,16 @@ import Destination from "./Destination";
 import london from "../assets/images/london.jpg";
 import client from "../api/client";
 
-const RecommendedDestins = ({ handleOpenCreateModal }) => {
+const RecommendedDestins = ({ handleOpenCreateModal, destination }) => {
   const [destinations, setDestinations] = React.useState([]);
   const [loader, setLoader] = React.useState(false);
 
   React.useEffect(() => {
     fetchDestinations();
-  }, []);
+    if (destination) {
+      upDate(destination);
+    }
+  }, [destination]);
 
   const fetchDestinations = async () => {
     try {
@@ -24,6 +27,14 @@ const RecommendedDestins = ({ handleOpenCreateModal }) => {
       console.log(error);
     }
   };
+
+  const upDate = (destination) =>
+    setDestinations((prevState) => [...prevState, destination]);
+
+  const updateDelete = (id) =>
+    setDestinations((prevState) =>
+      prevState.filter((destination) => destination.id !== id)
+    );
 
   return (
     <div className="mt-5 pt-2 sm:mt-8">
@@ -47,13 +58,15 @@ const RecommendedDestins = ({ handleOpenCreateModal }) => {
           <>
             {destinations?.map((destination) => (
               <Destination
-                country={destination.location}
+                country={destination.place}
                 desc={destination.description}
                 distance={destination.distance}
                 duration={destination.duration}
                 price={destination.price}
                 image={london}
                 key={destination.id}
+                id={destination.id}
+                updateDelete={updateDelete}
               />
             ))}
           </>

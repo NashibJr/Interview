@@ -11,6 +11,10 @@ import CreateModal from "../Modals/CreateModal";
 
 const Homepage = ({ handleOpen }) => {
   const [openCreateModal, setOpenCreateModal] = React.useState(false);
+  const [destination, setDestination] = React.useState();
+
+  const getDestination = (destination) => setDestination(destination);
+
   return (
     <div className="p-0">
       <div className="md:pr-5 md:pl-5 lg:mr-[50px] lg:ml-[50px] p-2">
@@ -20,6 +24,7 @@ const Homepage = ({ handleOpen }) => {
         <QuickLinks />
         <RecommendedDestins
           handleOpenCreateModal={() => setOpenCreateModal(true)}
+          destination={destination}
         />
         <Blogs />
         <Clients />
@@ -30,6 +35,7 @@ const Homepage = ({ handleOpen }) => {
       <CreateModal
         open={openCreateModal}
         handleClose={() => setOpenCreateModal(false)}
+        getDestination={getDestination}
       />
     </div>
   );

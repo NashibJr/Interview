@@ -7,10 +7,20 @@ import { GrUpdate } from "react-icons/gr";
 import UpdateModal from "../Modals/UpdateModal";
 import DeleteModal from "../Modals/DeleteModal";
 
-const Destination = ({ image, country, desc, price, distance, duration }) => {
+const Destination = ({
+  image,
+  country,
+  desc,
+  price,
+  distance,
+  duration,
+  id,
+  updateDelete,
+}) => {
   const [showIcons, setShowIcons] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
+
   return (
     <div className="w-[150px] m-1 mb-5 sm:w-[290px] md:w-[300px] xs:w-[200px] lg:w-[410px] md:mr-4 cursor-pointer">
       <div
@@ -68,6 +78,8 @@ const Destination = ({ image, country, desc, price, distance, duration }) => {
       <DeleteModal
         open={openDeleteModal}
         handleClose={() => setOpenDeleteModal(false)}
+        id={id}
+        updateDelete={() => updateDelete(id)}
       />
     </div>
   );
