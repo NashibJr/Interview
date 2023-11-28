@@ -31,7 +31,7 @@ const NavBar = ({ handleOpen }) => {
           handleClick={handleOpen}
         />
       </nav>
-      <SmallDeviceNav />
+      <SmallDeviceNav handleClick={handleOpen} />
     </>
   );
 };
