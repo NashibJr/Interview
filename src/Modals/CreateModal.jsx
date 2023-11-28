@@ -6,7 +6,6 @@ import client from "../api/client";
 
 const CreateModal = ({ handleClose, open, getDestination }) => {
   const [state, setState] = React.useState({
-    image: "",
     place: "",
     distance: "",
     price: "",
@@ -15,12 +14,20 @@ const CreateModal = ({ handleClose, open, getDestination }) => {
   });
 
   const [loader, setLoader] = React.useState(false);
+  const [image, setImage] = React.useState("");
+
+  const handleImageChange = (event) => {
+    const { files } = event.target;
+    const form = new FormData();
+    form.append("image", files);
+    setImage(files[0].name);
+  };
 
   const handleChange = (event) =>
     setState({ ...state, [event.target.name]: event.target.value });
 
   const handleCreate = async (event) => {
-    const data = { ...state, image: "helloworldjj!.png" };
+    const data = { ...state, image: image };
     event.preventDefault();
     try {
       setLoader(true);
@@ -28,6 +35,7 @@ const CreateModal = ({ handleClose, open, getDestination }) => {
       getDestination(response?.data?.data);
       setLoader(false);
       alert(response?.data?.message);
+      console.log(response, "?????");
       handleClose();
       setState({
         description: "",
@@ -51,13 +59,14 @@ const CreateModal = ({ handleClose, open, getDestination }) => {
       descID="create-dest"
       handleClose={handleClose}
     >
-      <form>
+      <form encType="multipart/form-data" method="post">
         <label>Destination image</label>
-        <Input
+        <input
           type="file"
           name="image"
-          value={state.image}
-          handleChange={handleChange}
+          onChange={handleImageChange}
+          accept="image/*"
+          className="border border-[rgba(0, 0, 0, .2)] rounded-md p-2 mt-0 w-full outline-none sm:p-3 mb-2 sm:mb-3"
         />
         <Input
           type="text"
