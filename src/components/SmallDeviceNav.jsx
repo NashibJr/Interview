@@ -6,7 +6,7 @@ import { links } from "../dummy/constants";
 import Link from "./Link";
 import Button from "./Button";
 
-const SmallDeviceNav = () => {
+const SmallDeviceNav = ({ handleClick }) => {
   const [mobileNav, setMobileNav] = React.useState(false);
   const [loggedin, setLoggedin] = React.useState(false);
   return (
@@ -22,6 +22,7 @@ const SmallDeviceNav = () => {
               loggedin ? "hidden" : "block"
             }`}
             label="login"
+            handleClick={handleClick}
           />
           <CiMenuFries
             fill="dodgerblue"
