@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/destinations",
+  baseURL:
+    "https://interview-backend-production-75c4.up.railway.app/api/destinations",
 });
 
 export default client;
