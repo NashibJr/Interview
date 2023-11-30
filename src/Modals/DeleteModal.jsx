@@ -11,7 +11,6 @@ const DeleteModal = ({ open, handleClose, id, updateDelete }) => {
       setLoader(true);
       const response = await client.delete(`/${id}`);
       alert(response?.data?.message);
-      console.log(response);
       setLoader(false);
       handleClose();
       updateDelete(id);
