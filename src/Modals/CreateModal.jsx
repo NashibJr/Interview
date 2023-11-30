@@ -31,11 +31,14 @@ const CreateModal = ({ handleClose, open, getDestination }) => {
     event.preventDefault();
     try {
       setLoader(true);
-      const response = await client.post("", data);
+      const response = await client.post("", data, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
       getDestination(response?.data?.data);
       setLoader(false);
       alert(response?.data?.message);
-      console.log(response, "?????");
       handleClose();
       setState({
         description: "",
@@ -47,6 +50,7 @@ const CreateModal = ({ handleClose, open, getDestination }) => {
       });
     } catch (error) {
       setLoader(false);
+      alert(error?.message);
       console.log(error);
     }
   };
