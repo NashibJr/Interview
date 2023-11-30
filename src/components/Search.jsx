@@ -46,7 +46,7 @@ const Search = () => {
           <input
             type="date"
             name="endDate"
-            value={state.startDate}
+            value={state.endDate}
             className="outline-none ml-1 mt-[3px] w-3/4 cursor-pointer"
             placeholder="Add Date"
             onChange={handleChange}
